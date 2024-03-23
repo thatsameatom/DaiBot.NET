@@ -431,6 +431,29 @@ public static class QueueHelper<T> where T : PKM, new()
         { "Fairy", "<:Fairy:1134575841523814470>" },
         { "Stellar", "<:Stellar:1186199337177468929>" },
     };
+             // Diccionario de traducción de Tera Tipos
+                Dictionary<string, string> traduccionesTeraTipos = new Dictionary<string, string>()
+    {
+        { "Normal", "Normal" },
+        { "Fire", "Fuego" },
+        { "Water", "Agua" },
+        { "Grass", "Planta" },
+        { "Flying", "Volador" },
+        { "Poison", "Veneno" },
+        { "Electric", "Eléctrico" },
+        { "Ground", "Tierra" },
+        { "Psychic", "Psíquico" },
+        { "Fighting", "Lucha" },
+        { "Rock", "Roca" },
+        { "Ice", "Hielo" },
+        { "Bug", "Bicho" },
+        { "Dragon", "Dragón" },
+        { "Ghost", "Fantasma" },
+        { "Dark", "Siniestro" },
+        { "Steel", "Acero" },
+        { "Fairy", "Hada" },
+        { "Stellar", "Estelar" },
+    };
 
                 if (tera == "99") // Special case for Stellar
                 {
@@ -438,16 +461,17 @@ public static class QueueHelper<T> where T : PKM, new()
                 }
                 else
                 {
-                    // Check if the Tera Type has a corresponding emoji
+                    // Revisar si el teratipo tiene un emoji y agregar la traducción al Español
                     if (teraEmojis.TryGetValue(tera, out string? emojiID))
+                    if (traduccionesTeraTipos.TryGetValue(tera, out string? traduccionTeraTipo))
                     {
                         var emoji = new Emoji(emojiID); // Get emoji from the server using the ID
-                        leftSideContent += $"**Tera Tipo**: {emoji} {tera}\n"; // Add emoji to the message
+                        leftSideContent += $"**Tera Tipo**: {emoji} {traduccionTeraTipo}\n"; // Add emoji to the message
                     }
                     else
                     {
                         // If no corresponding emoji found, just display the Tera Type
-                        leftSideContent += $"**Tera Tipo**: {tera}\n";
+                        leftSideContent += $"**Tera Tipo**: {traduccionTeraTipo}\n";
                     }
                 }
             }
