@@ -199,7 +199,16 @@ public static class QueueHelper<T> where T : PKM, new()
 
         // Format IVs for display
         int[] ivs = pk.IVs;
-        string ivsDisplay = $"{ivs[0]}/{ivs[1]}/{ivs[2]}/{ivs[3]}/{ivs[4]}/{ivs[5]}";
+        string ivsDisplay;
+
+if (ivs.All(iv => iv == 31))
+{
+    ivsDisplay = "6IV";
+}
+else
+{
+    ivsDisplay = $"{ivs[0]}/{ivs[1]}/{ivs[2]}/{ivs[3]}/{ivs[4]}/{ivs[5]}";
+}
 
         ushort[] moves = new ushort[4];
         pk.GetMoves(moves.AsSpan());
