@@ -230,8 +230,40 @@ public static class QueueHelper<T> where T : PKM, new()
         {
             teraTypeString = ""; // or another default value as needed
         }
+        
+        // Diccionario de traducción de naturalezas
+        Dictionary<string, string> traduccionesNaturalezas = new Dictionary<string, string>()
+        {
+            { "Hardy", "Fuerte" },
+            { "Lonely", "Huraña" },
+            { "Brave", "Audaz" },
+            { "Adamant", "Firme" },
+            { "Naughty", "Pícara" },
+            { "Bold", "Osada" },
+            { "Docile", "Dócil" },
+            { "Relaxed", "Plácida" },
+            { "Impish", "Agitada" },
+            { "Lax", "Floja" },
+            { "Timid", "Miedosa" },
+            { "Hasty", "Activa" },
+            { "Serious", "Seria" },
+            { "Jolly", "Alegre" },
+            { "Naive", "Ingenua" },
+            { "Modest", "Modesta" },
+            { "Mild", "Afable" },
+            { "Quiet", "Mansa" },
+            { "Bashful", "Tímida" },
+            { "Rash", "Alocada" },
+            { "Calm", "Serena" },
+            { "Gentle", "Amable" },
+            { "Sassy", "Grosera" },
+            { "Careful", "Cauta" },
+            { "Quirky", "Rara" }
+        };
+        
         int level = pk.CurrentLevel;
         string speciesName = GameInfo.GetStrings(1).Species[pk.Species];
+        string traduccionNature = traduccionesNaturalezas.ContainsKey(natureName) ? traduccionesNaturalezas[natureName] : natureName;
         string alphaMarkSymbol = string.Empty;
         string mightyMarkSymbol = string.Empty;
         if (pk is IRibbonSetMark9 ribbonSetMark)
@@ -424,7 +456,7 @@ public static class QueueHelper<T> where T : PKM, new()
             {
                 leftSideContent += $"{scale}\n";
             };
-            leftSideContent += $"**Naturaleza**: {natureName}\n" +
+            leftSideContent += $"**Naturaleza:** {traduccionNature}\n" +
                                $"**IVs**: {ivsDisplay}\n";
             var evs = new List<string>();
 
